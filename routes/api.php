@@ -16,3 +16,4 @@ use App\Http\Controllers\ShareController;
 */
 
 Route::apiResource('/share',ShareController::class);
+Route::apiResource('/share/home',ShareController::class);

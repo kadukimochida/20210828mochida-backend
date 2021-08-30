@@ -8,14 +8,19 @@ use App\Models\User;
 use App\Models\Post;
 
 
-class ShereController extends Controller
+class ShareController extends Controller
 {
     
-    public function index()
+    public function index(Request $request,User $user)
     {
-        $items = User::all();
+        $items = User::where('email',$request->email)->get();
         return response()->json([
             'data' => $items
+        ],200);
+
+        $posts = Post::all();
+        return response()->json()([
+            'data' => $posts
         ],200);
     }
 
@@ -26,6 +31,13 @@ class ShereController extends Controller
         {
             return response()->json([
                 'data' => $item
+            ],201);
+        }
+
+        $post = Post::store($request->all());
+        {
+            return response()->json([
+                'data' => $post
             ],201);
         }
     }
