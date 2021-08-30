@@ -15,4 +15,4 @@ use App\Http\Controllers\ShareController;
 |
 */
 
-Route::apiResource('/share',ShereController::class);
+Route::apiResource('/share',ShareController::class);
