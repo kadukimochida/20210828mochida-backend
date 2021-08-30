@@ -13,7 +13,7 @@ class ShareController extends Controller
     
     public function index(Request $request,User $user)
     {
-        $items = User::where('email',$request->email)->get();
+        $items = User::where('email',$request->email)->first();
         return response()->json([
             'data' => $items
         ],200);

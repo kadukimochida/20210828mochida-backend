@@ -12,4 +12,7 @@ class Comment extends Model
         'post_id' => 'required',
         'comment' => 'required',
     );
+    public function post(){
+        return $this.belongsTo('App\Models\Post');
+    }
 }
