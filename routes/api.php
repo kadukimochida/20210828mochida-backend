@@ -17,6 +17,7 @@ use App\Http\Controllers\CommentController;
 |
 */
 
+
 Route::apiResource('/share',UserController::class);
-Route::apiResource('/share/post',PostController::class);
-Route::apiResource('/share/comment',CommentController::class);
+Route::apiResource('/post',PostController::class);
+Route::apiResource('/comment',CommentController::class);
