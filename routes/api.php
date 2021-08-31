@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ShareController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +17,6 @@ use App\Http\Controllers\ShareController;
 |
 */
 
-Route::apiResource('/share',ShareController::class);
-Route::apiResource('/share/home',ShareController::class);
+Route::apiResource('/share',UserController::class);
+Route::apiResource('/share/post',PostController::class);
+Route::apiResource('/share/comment',CommentController::class);

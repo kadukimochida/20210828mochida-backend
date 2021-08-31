@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comment;
 use App\Models\User;
-use App\Models\Post;
 
 
-class ShareController extends Controller
+
+class UserController extends Controller
 {
     
     public function index(Request $request,User $user)
@@ -16,11 +15,6 @@ class ShareController extends Controller
         $items = User::where('email',$request->email)->first();
         return response()->json([
             'data' => $items
-        ],200);
-
-        $posts = Post::all();
-        return response()->json()([
-            'data' => $posts
         ],200);
     }
 
@@ -34,18 +28,21 @@ class ShareController extends Controller
             ],201);
         }
 
-        $post = Post::store($request->all());
-        {
-            return response()->json([
-                'data' => $post
-            ],201);
-        }
     }
 
     
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $item = User::find($user);
+        if($item) {
+            return response()->json([
+                'data' => $item
+            ],200);
+        } else {
+            return response()->json()([
+                'message' => 'Not find'
+            ],404);
+        }
     }
 
     
