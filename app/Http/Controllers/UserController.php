@@ -10,9 +10,9 @@ use App\Models\User;
 class UserController extends Controller
 {
     
-    public function index(Request $request,User $user)
+    public function index()
     {
-        $items = User::where('email',$request->email)->first();
+        $items = User::all();
         return response()->json([
             'data' => $items
         ],200);
