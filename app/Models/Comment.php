@@ -11,6 +11,7 @@ class Comment extends Model
     public static $rules = array(
         'post_id' => 'required',
         'comment' => 'required',
+        'name' => 'required',
     );
     public function post(){
         return $this.belongsTo('App\Models\Post');

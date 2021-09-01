@@ -13,6 +13,7 @@ class Post extends Model
     public static $rules = array(
         'user_id' => 'required',
         'content' => 'required',
+        'name' => 'required',
     );
 
     public function comments() {
