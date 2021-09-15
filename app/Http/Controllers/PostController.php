@@ -10,8 +10,10 @@ class PostController extends Controller
     public function index()
     {
         $items = Post::all();
+        $comment = Post::with('comments')->get();
         return response()->json([
-            'data' => $items
+            'data' => $items,
+            'comments' => $comment
         ],200);
     }
 
@@ -27,10 +29,10 @@ class PostController extends Controller
     
     public function show(Post $post)
     {
-        $item = Post::find($post);
+        $item = Post::find($post)->load('comments');
         if($item) {
             return response()->json([
-                'data' => $item
+                'data' => $item,
             ],200);
         } else {
             return response()->json([
@@ -42,7 +44,19 @@ class PostController extends Controller
     
     public function update(Request $request, Post $post)
     {
-        //
+        $update = [
+            'good' => $request->good,
+        ];
+        $item = Post::where('id',$post->id)->update($update);
+        if ($item) {
+            return response()->json([
+                'message'=>'Update successfully',
+            ],200);
+        } else {
+            return response()->json([
+                'message' => 'Not found',
+            ],404);
+        }
     }
 
     
@@ -59,4 +73,6 @@ class PostController extends Controller
             ],404);
         }
     }
+
+    
 }
